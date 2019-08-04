@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+	font-family: sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+	margin-bottom: 1em;
+}
+
+td {
+	padding: 0 0.2em;
+}
+
+td > select {
+	width: 100%;
+}
