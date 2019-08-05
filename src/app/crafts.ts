@@ -24,12 +24,15 @@ export type Res =
 	| "engineUnit"
 	| "electricEngineUnit"
 	| "electricFurnace"
+	| "battery"
 	| "efficiencyModule"
 	| "efficiencyModule2"
+	| "speedModule"
 	| "sciencePack1"
 	| "sciencePack2"
 	| "sciencePack3"
 	| "productionSciencePack"
+	| "highTechSciencePack"
 	| "energy";
 
 export type Cart = {[K in Res]?: number};
@@ -290,6 +293,14 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			}, 
 			placeable: true
 		},
+		speedModule: {
+			time: 15,
+			consumes: {
+				advancedCircuit: 5,
+				electronicCircuit: 5,				
+			}, 
+			placeable: true,
+		},
 		electricMiningDrill: {
 			time: 2,
 			consumes: {
@@ -353,7 +364,17 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				electricEngineUnit: 1,
 				electricFurnace: 1,
 			}
-		}
+		},
+		highTechSciencePack: {
+			time: 14,
+			produces: 2,
+			consumes: {
+				battery: 1,
+				copperCable: 30,
+				processingUnit: 3,
+				speedModule: 1, 
+			}
+		},
 	},
 	pumpJack: {
 		crudeOil: {
@@ -393,6 +414,14 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			consumes: {
 				ironPlate: 1,
 				sulfur: 5,
+			}
+		},
+		battery: {
+			time: 5,
+			consumes: {
+				copperPlate: 1,
+				ironPlate: 1,
+				sulfuricAcid: 20,
 			}
 		}
 	}
