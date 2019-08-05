@@ -148,6 +148,8 @@ export interface CraftInfo {
 	time?: number;
 	consumes?: Cart;
 	produces?: number;
+	/** placeable products can not accept productivity modules */
+	placeable?: boolean; 
 }
 
 export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
@@ -208,12 +210,14 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				ironPlate: 1,
 				ironGearWheel: 1,
 			},
+			placeable: true,
 		},
 		pipe: {
 			time: 0.5,
 			consumes: {
 				ironPlate: 1,
-			}
+			},
+			placeable: true,
 		},
 		copperCable: {
 			produces: 2,
@@ -235,7 +239,8 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				electronicCircuit: 1,
 				ironGearWheel: 1,
 				ironPlate: 1,
-			}
+			},
+			placeable: true,
 		}, 
 		advancedCircuit: {
 			time: 6,
@@ -251,7 +256,8 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				electronicCircuit: 3,
 				ironGearWheel: 5,
 				ironPlate: 10,
-			}
+			}, 
+			placeable: true,
 		},
 		engineUnit: {
 			time: 10,

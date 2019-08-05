@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DecamelizePipe, WikiPagePipe } from './pipes';
+import { WikiLinkComponent } from './wiki-link.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DecamelizePipe,
+    WikiLinkComponent,
     WikiPagePipe,
   ],
   imports: [
