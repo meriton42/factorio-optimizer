@@ -1,21 +1,29 @@
-<table>
-  <thead>
-    <tr>
-      <th colspan="2">Production Technology</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let producerType of producerTypes">
-      <td>{{producerType | decamelize}}</td>
-      <td>
-        <select [(ngModel)]="state.preferredProducer[producerType]" (ngModelChange)="update()">
-          <option *ngFor="let producer of producerNames(producerType)" [value]="producer">{{producer | decamelize}}</option>
-        </select>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<aside>
+  <h1>Production Technology</h1>
+  <table>
+    <tbody>
+      <tr *ngFor="let producerType of producerTypes">
+        <td>{{producerType | decamelize}}</td>
+        <td>
+          <select [(ngModel)]="state.preferredProducer[producerType]" (ngModelChange)="update()">
+            <option *ngFor="let producer of producerNames(producerType)" [value]="producer">{{producer | decamelize}}</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
+  <h1>Available Modules</h1>
+  <table>
+    <tbody>
+      <tr *ngFor="let module of moduleNames">
+        <td><input type="checkbox" [(ngModel)]="state.available[module]" (ngModelChange)="update()"></td>
+        <td><a [href]="'https://stable.wiki.factorio.com/' + (module | wikiPage)"><img [src]="'https://stable.wiki.factorio.com/images/' + (module | wikiPage) + '.png'" width="16"></a></td>
+        <td>{{module | decamelize}}</td>
+      </tr>
+    </tbody>
+  </table>
+</aside>
 
 <table>
   <thead>

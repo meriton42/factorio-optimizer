@@ -1,7 +1,9 @@
 import { ProducerType, ProducerName } from "./crafts";
+import { ModuleName } from './modules';
 
 interface State {
 	preferredProducer: {[P in ProducerType]: ProducerName<P>};
+	available: {[P in ModuleName]?: boolean};
 }
 
 const defaultState: State = {
@@ -14,6 +16,7 @@ const defaultState: State = {
 		oilRefinery: "oilRefinery",
 		chemicalPlant: "chemicalPlant",
 	},
+	available: {},
 }
 
 function merge(x, y) {

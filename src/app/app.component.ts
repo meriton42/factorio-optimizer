@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { calculate } from './optimizer';
 import { state, saveState } from './state';
 import { producerTypes, ProducerType, producerNames } from './crafts';
+import { moduleNames } from './modules';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
 
   state = state;
   producerTypes = producerTypes;
+  moduleNames = moduleNames;
   crafts: ReturnType<typeof calculate>;
 
   producerNames(type: ProducerType) {
