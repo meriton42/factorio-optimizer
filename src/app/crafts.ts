@@ -15,12 +15,17 @@ export type Res =
 	| "inserter"
 	| "crudeOil"
 	| "petroleumGas"
+	| "sulfuricAcid"
+	| "sulfur"
 	| "plasticBar"
 	| "advancedCircuit"
+	| "processingUnit"
 	| "electricMiningDrill"
 	| "engineUnit"
 	| "electricEngineUnit"
 	| "electricFurnace"
+	| "efficiencyModule"
+	| "efficiencyModule2"
 	| "sciencePack1"
 	| "sciencePack2"
 	| "sciencePack3"
@@ -260,6 +265,31 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				plasticBar: 2,
 			}
 		},
+		processingUnit: {
+			time: 10,
+			consumes: {
+				advancedCircuit: 2,
+				electronicCircuit: 20,
+				sulfuricAcid: 5,
+			}
+		},
+		efficiencyModule: {
+			time: 15,
+			consumes: {
+				advancedCircuit: 5,
+				electronicCircuit: 5,				
+			}, 
+			placeable: true,
+		},
+		efficiencyModule2: {
+			time: 30,
+			consumes: {
+				advancedCircuit: 5,
+				efficiencyModule: 4,
+				processingUnit: 5,
+			}, 
+			placeable: true
+		},
 		electricMiningDrill: {
 			time: 2,
 			consumes: {
@@ -350,6 +380,21 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				petroleumGas: 1,
 			}
 		},
+		sulfur: {
+			time: 1,
+			produces: 2,
+			consumes: {
+				petroleumGas: 30,
+			}
+		},
+		sulfuricAcid: {
+			time: 1,
+			produces: 50,
+			consumes: {
+				ironPlate: 1,
+				sulfur: 5,
+			}
+		}
 	}
 }
 
