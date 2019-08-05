@@ -7,6 +7,7 @@ export type Res =
 	| "transportBelt"
 	| "pipe"
 	| "steelPlate"
+	| "stoneBrick"
 	| "copperOre"
 	| "copperPlate"
 	| "copperCable"
@@ -18,9 +19,12 @@ export type Res =
 	| "advancedCircuit"
 	| "electricMiningDrill"
 	| "engineUnit"
+	| "electricEngineUnit"
+	| "electricFurnace"
 	| "sciencePack1"
 	| "sciencePack2"
 	| "sciencePack3"
+	| "productionSciencePack"
 	| "energy";
 
 export type Cart = {[K in Res]?: number};
@@ -195,6 +199,12 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				ironPlate: 5,
 			},
 		},
+		stoneBrick: {
+			time: 3.5,
+			consumes: {
+				stone: 2,
+			}
+		}
 	},
 	assembly: {
 		ironGearWheel: {
@@ -267,6 +277,23 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				steelPlate: 1,
 			}
 		},
+		electricEngineUnit: {
+			time: 10,
+			consumes: {
+				electronicCircuit: 2,
+				engineUnit: 1,
+				// heavy oil omitted (pollution accounted for by other refinery products)
+			}
+		},
+		electricFurnace: {
+			time: 5,
+			consumes: {
+				advancedCircuit: 5,
+				steelPlate: 10,
+				stoneBrick: 10,
+			},
+			placeable: true,
+		},
 		sciencePack1: {
 			time: 5,
 			consumes: {
@@ -287,6 +314,14 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				advancedCircuit: 1,
 				electricMiningDrill: 1,
 				engineUnit: 1,
+			}
+		},
+		productionSciencePack: {
+			time: 14,
+			produces: 2,
+			consumes: {
+				electricEngineUnit: 1,
+				electricFurnace: 1,
 			}
 		}
 	},

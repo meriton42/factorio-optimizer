@@ -17,6 +17,7 @@ export function calculate() {
 		getReport(product as Res);
 	}
 	const {energy, ...reports} = report;
+	console.log("60kW cause " + 60 * energy.pollution + " pollution");
   return Object.values(reports);
 }
 
