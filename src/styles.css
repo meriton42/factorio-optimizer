@@ -29,3 +29,7 @@ td {
 td > select {
 	width: 100%;
 }
+
+td > input {
+	border-style: none;
+}

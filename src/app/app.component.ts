@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { calculate } from './optimizer';
 import { state, saveState } from './state';
-import { producerTypes, ProducerType, producerNames } from './crafts';
+import { producerTypes, ProducerType, producerNames, CraftInfo } from './crafts';
 import { moduleNames } from './modules';
 
 @Component({
@@ -26,5 +26,9 @@ export class AppComponent {
   update() {
     saveState();
     this.crafts = calculate();
+  }
+
+  byProduct(index: any, item: any) {
+    return item.product;
   }
 }

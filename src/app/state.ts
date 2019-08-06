@@ -1,9 +1,11 @@
 import { ProducerType, ProducerName } from "./crafts";
 import { ModuleName } from './modules';
+import { emptyCart, Res } from './res';
 
 interface State {
 	preferredProducer: {[P in ProducerType]: ProducerName<P>};
 	available: {[P in ModuleName]?: boolean};
+	beaconSlots: {[R in Res]?: number};
 }
 
 const defaultState: State = {
@@ -17,6 +19,7 @@ const defaultState: State = {
 		chemicalPlant: "chemicalPlant",
 	},
 	available: {},
+	beaconSlots: {...emptyCart},
 }
 
 function merge(x, y) {

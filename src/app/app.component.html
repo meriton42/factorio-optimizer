@@ -29,7 +29,9 @@
   <thead>
     <tr>
       <th colspan="2">Product</th>
-      <th colspan="4">Pollution by</th>
+      <th colspan="5">Pollution by</th>
+      <th>Best Modules</th>
+      <th>Beacons</th>
     </tr>
     <tr>
       <th></th>
@@ -42,7 +44,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let craft of crafts">
+    <tr *ngFor="let craft of crafts; trackBy: byProduct">
       <td><wiki-link [item]="craft.product"></wiki-link></td>
       <td>{{craft.product | decamelize}}</td>
       <td style="text-align: right">{{craft.pollutionByProducer | number:'0.2-2'}}</td>
@@ -51,6 +53,7 @@
       <td style="text-align: right">{{craft.pollutionByInputs | number:'0.2-2'}}</td>
       <td style="text-align: right">{{craft.pollution | number:'0.2-2'}}</td>
       <td><wiki-link *ngFor="let module of craft.bestModules" [item]="module.name"></wiki-link></td>
+      <td><input type="number" min="0" max="20" style="width: 4ch" [(ngModel)]="state.beaconSlots[craft.product]" (ngModelChange)="update()"></td>
     </tr>
   </tbody>
 </table>

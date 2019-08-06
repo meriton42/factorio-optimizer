@@ -1,4 +1,5 @@
-import { crafts, CraftInfo, ProducerType, Res, producers, ProducerInfo } from "./crafts";
+import { Res } from './res';
+import { crafts, CraftInfo, ProducerType, producers, ProducerInfo } from "./crafts";
 import { state } from './state';
 import { ModuleInfo, modules, ModuleEffect, NoModule } from './modules';
 

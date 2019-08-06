@@ -1,41 +1,4 @@
-export type Res = 
-	"stone"
-	| "coal"
-	| "ironOre"
-	| "ironPlate"
-	| "ironGearWheel"
-	| "transportBelt"
-	| "pipe"
-	| "steelPlate"
-	| "stoneBrick"
-	| "copperOre"
-	| "copperPlate"
-	| "copperCable"
-	| "electronicCircuit"
-	| "inserter"
-	| "crudeOil"
-	| "petroleumGas"
-	| "sulfuricAcid"
-	| "sulfur"
-	| "plasticBar"
-	| "advancedCircuit"
-	| "processingUnit"
-	| "electricMiningDrill"
-	| "engineUnit"
-	| "electricEngineUnit"
-	| "electricFurnace"
-	| "battery"
-	| "efficiencyModule"
-	| "efficiencyModule2"
-	| "speedModule"
-	| "sciencePack1"
-	| "sciencePack2"
-	| "sciencePack3"
-	| "productionSciencePack"
-	| "highTechSciencePack"
-	| "energy";
-
-export type Cart = {[K in Res]?: number};
+import { Cart, Res } from './res';
 
 export interface ProducerInfo {
 	miningPower?: number;
