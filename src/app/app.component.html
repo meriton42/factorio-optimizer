@@ -53,7 +53,7 @@
       <td style="text-align: right">{{craft.pollutionByInputs | number:'0.2-2'}}</td>
       <td style="text-align: right">{{craft.pollution | number:'0.2-2'}}</td>
       <td><wiki-link *ngFor="let module of craft.bestModules" [item]="module.name"></wiki-link></td>
-      <td><input type="number" min="0" max="20" style="width: 4ch" [(ngModel)]="state.beaconSlots[craft.product]" (ngModelChange)="update()"></td>
+      <td><input type="number" min="0" max="16" style="width: 4ch" [(ngModel)]="state.beaconSlots[craft.product]" (ngModelChange)="update()"></td>
     </tr>
   </tbody>
 </table>

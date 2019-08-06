@@ -1,25 +1,4 @@
 const _modules = {
-	efficiencyModule: {
-		energy: -0.30,
-	},
-	efficiencyModule2: {
-		energy: -0.40,
-	},
-	efficiencyModule3: {
-		energy: -0.50,
-	},
-	speedModule: {
-		energy: 0.50,
-		speed: 0.20,
-	},
-	speedModule2: {
-		energy: 0.60,
-		speed: 0.30,
-	},
-	speedModule3: {
-		energy: 0.70,
-		speed: 0.50,
-	},
 	productivityModule: {
 		energy: 0.40,
 		speed: -0.15,
@@ -37,7 +16,28 @@ const _modules = {
 		speed: -0.15,
 		productivity: 0.10,
 		pollution: 0.10,
-	}
+	},
+	speedModule: {
+		energy: 0.50,
+		speed: 0.20,
+	},
+	speedModule2: {
+		energy: 0.60,
+		speed: 0.30,
+	},
+	speedModule3: {
+		energy: 0.70,
+		speed: 0.50,
+	},
+	efficiencyModule: {
+		energy: -0.30,
+	},
+	efficiencyModule2: {
+		energy: -0.40,
+	},
+	efficiencyModule3: {
+		energy: -0.50,
+	},
 }
 
 export type ModuleName = keyof typeof _modules;

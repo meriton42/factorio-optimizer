@@ -47,11 +47,13 @@ function getReport(product: Res) {
 		}
 
 		const availableModules = modules.filter(module => state.available[module.name] && !(module.name.startsWith("productivity") && info.placeable));
+		const minIndexForBeacon = availableModules.findIndex(module => !module.name.startsWith("productivity"));
 		const slots = producer.slots;
+		const beaconSlots = state.beaconSlots[product];
 		let bestPollution = Infinity;
 		let bestEffect = null;
 		let bestModules: ModuleInfo[] = [];
-		const explore = (currentModules: ModuleInfo[], currentEffect: ModuleEffect) => {
+		const explore = (index: number, currentModules: ModuleInfo[], currentEffect: ModuleEffect) => {
 			const pollution = pollutionByProducer * currentEffect.producerPollutionFactor
 											+ pollutionByEnergy * currentEffect.energyPollutionFactor
 											+ pollutionByInputs * currentEffect.inputPollutionFactor;
@@ -61,15 +63,19 @@ function getReport(product: Res) {
 				bestModules = [...currentModules];
 			}
 
-			if (currentModules.length < slots) {
-				for (const module of availableModules) {
+			if (currentModules.length < slots + beaconSlots) {
+				if (currentModules.length >= slots) {
+					index = Math.max(index, minIndexForBeacon);
+				}
+				for (let i = index; i < availableModules.length; i++) {
+					const module = availableModules[i];
 					currentModules.push(module);
-					explore(currentModules, currentEffect.plus(module));
+					explore(i, currentModules, currentEffect.plus(module));
 					currentModules.pop();
 				}
 			}
 		}
-		explore([], new NoModule());
+		explore(0, [], new NoModule());
 
 		pollutionByProducer *= bestEffect.producerPollutionFactor;
 		pollutionByEnergy *= bestEffect.energyPollutionFactor;
