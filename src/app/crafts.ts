@@ -1,7 +1,6 @@
 import { Cart, Res } from './res';
 
 export interface ProducerInfo {
-	miningPower?: number;
 	miningSpeed?: number;
 	speed?: number;
 	burns?: number;
@@ -14,9 +13,9 @@ export interface ProducerInfo {
 const _producers = {
 	energy: {
 		boiler: {
-			pollution: 27.6923,
+			pollution: 30,
 			production: 1800, // kW
-			burns: 3600, // kW
+			burns: 1800, // kW
 			speed: 1,
 			slots: 0,
 		},
@@ -30,36 +29,34 @@ const _producers = {
 	},
 	mine: {
 		burnerMiningDrill: {
-			miningPower: 2.5,
-			miningSpeed: 0.35,
-			burns: 300,
-			pollution: 10,
+			miningSpeed: 0.25,
+			burns: 150,
+			pollution: 12,
 			slots: 0,
 		},
 		electricMiningDrill: {
-			miningPower: 3,
 			miningSpeed: 0.5,
 			energy: 90,
-			pollution: 9,
+			pollution: 10,
 			slots: 3,
 		},
 	},
 	furnace: {
 		stoneFurnace: {
 			speed: 1,
-			pollution: 1.8,
-			burns: 180,
+			pollution: 2,
+			burns: 90,
 			slots: 0,
 		},
 		steelFurnace: {
 			speed: 2,
-			pollution: 3.6,
-			burns: 180,
+			pollution: 4,
+			burns: 90,
 			slots: 0,
 		},
 		electricFurnace: {
 			speed: 2,
-			pollution: 0.9,
+			pollution: 1,
 			energy: 180,
 			slots: 2,
 		}
@@ -67,27 +64,27 @@ const _producers = {
 	assembly: {
 		assemblingMachine1: {
 			speed: 0.5,
-			pollution: 3,
-			energy: 90,
+			pollution: 4,
+			energy: 75,
 			slots: 0,
 		},
 		assemblingMachine2: {
 			speed: 0.75,
-			pollution: 2.4,
+			pollution: 3,
 			energy: 150,
 			slots: 2,
 		},
 		assemblingMachine3: {
 			speed: 1.25,
-			pollution: 1.8,
-			energy: 210,
+			pollution: 2,
+			energy: 375,
 			slots: 4,
 		},
 	},
 	pumpJack: {
 		pumpJack: {
 			speed: 1,
-			pollution: 9,
+			pollution: 10,
 			energy: 90,
 			slots: 2,
 		}
@@ -96,15 +93,15 @@ const _producers = {
 		oilRefinery: {
 			speed: 1,
 			energy: 420,
-			pollution: 3.6,
+			pollution: 6,
 			slots: 3,
 		}
 	},
 	chemicalPlant: {
 		chemicalPlant: {
-			speed: 1.25,
+			speed: 1,
 			energy: 210,
-			pollution: 1.8,
+			pollution: 4,
 			slots: 3
 		}
 	},
@@ -118,7 +115,6 @@ export function producerNames(producerType: ProducerType) {
 }
 
 export interface CraftInfo {
-	miningHardness?: number;
 	miningTime?: number;
 	time?: number;
 	consumes?: Cart;
@@ -135,49 +131,52 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 	},
 	mine: {
 		coal: {
-			miningHardness: 0.9,
-			miningTime: 2,
+			miningTime: 1,
 		},
 		ironOre: {
-			miningHardness: 0.9,
-			miningTime: 2,
+			miningTime: 1,
 		},
 		copperOre: {
-			miningHardness: 0.9,
-			miningTime: 2,
+			miningTime: 1,
 		},
 		stone: {
-			miningHardness: 0.4,
-			miningTime: 2,
+			miningTime: 1,
 		},
 	},
 	furnace: {
 		copperPlate: {
-			time: 3.5,
+			time: 3.2,
 			consumes: {
 				copperOre: 1,
 			},
 		},
 		ironPlate: {
-			time: 3.5,
+			time: 3.2,
 			consumes: {
 				ironOre: 1,
 			},
 		},
 		steelPlate: {
-			time: 17.5,
+			time: 16,
 			consumes: {
 				ironPlate: 5,
 			},
 		},
 		stoneBrick: {
-			time: 3.5,
+			time: 3.2,
 			consumes: {
 				stone: 2,
 			}
 		}
 	},
 	assembly: {
+		ironStick: {
+			produces: 2,
+			time: 0.5,
+			consumes: {
+				ironPlate: 1,
+			}
+		},
 		ironGearWheel: {
 			time: 0.5,
 			consumes: {
@@ -192,6 +191,15 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				ironGearWheel: 1,
 			},
 			placeable: true,
+		},
+		rail: {
+			produces: 2,
+			time: 0.5,
+			consumes: {
+				ironStick: 1,
+				steelPlate: 1,
+				stone: 1,
+			}
 		},
 		pipe: {
 			time: 0.5,
@@ -264,13 +272,12 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			}, 
 			placeable: true,
 		},
-		electricMiningDrill: {
-			time: 2,
+		productivityModule: {
+			time: 15,
 			consumes: {
-				electronicCircuit: 3,
-				ironGearWheel: 5,
-				ironPlate: 10,
-			}, 
+				advancedCircuit: 5,
+				electronicCircuit: 5,
+			},
 			placeable: true,
 		},
 		engineUnit: {
@@ -286,7 +293,16 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			consumes: {
 				electronicCircuit: 2,
 				engineUnit: 1,
-				// heavy oil omitted (pollution accounted for by other refinery products)
+				// heavyOil: 15  // byproduct of oil processing, does not cause additional pollution
+			}
+		},
+		flyingRobotFrame: {
+			time: 20,
+			consumes: {
+				battery: 2,
+				electricEngineUnit: 1,
+				electronicCircuit: 3,
+				steelPlate: 1,
 			}
 		},
 		electricFurnace: {
@@ -298,44 +314,36 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			},
 			placeable: true,
 		},
-		sciencePack1: {
+		automationSciencePack: {
 			time: 5,
 			consumes: {
 				copperPlate: 1,
 				ironGearWheel: 1,
 			}
 		},
-		sciencePack2: {
+		logisticSciencePack: {
 			time: 6,
 			consumes: {
 				inserter: 1,
 				transportBelt: 1,
 			}
 		},
-		sciencePack3: {
-			time: 12,
+		chemicalSciencePack: {
+			produces: 2,
+			time: 24,
 			consumes: {
-				advancedCircuit: 1,
-				electricMiningDrill: 1,
-				engineUnit: 1,
+				advancedCircuit: 3,
+				engineUnit: 2,
+				sulfur: 1,
 			}
 		},
 		productionSciencePack: {
-			time: 14,
-			produces: 2,
+			produces: 3,
+			time: 21,
 			consumes: {
-				electricEngineUnit: 1,
 				electricFurnace: 1,
-			}
-		},
-		highTechSciencePack: {
-			time: 14,
-			produces: 2,
-			consumes: {
-				battery: 1,
-				copperCable: 30,
-				processingUnit: 3,
-				speedModule: 1, 
+				productivityModule: 1,
+				rail: 30,
 			}
 		},
 	},
@@ -361,7 +369,7 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			produces: 2,
 			consumes: {
 				coal: 1,
-				petroleumGas: 1,
+				petroleumGas: 20,
 			}
 		},
 		sulfur: {
@@ -380,7 +388,7 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			}
 		},
 		battery: {
-			time: 5,
+			time: 4,
 			consumes: {
 				copperPlate: 1,
 				ironPlate: 1,

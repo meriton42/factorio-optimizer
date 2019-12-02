@@ -31,12 +31,12 @@ function getReport(product: Res) {
 		const producerName = state.preferredProducer[producerType];
 		const producer = producers[producerType][producerName] as ProducerInfo;
 		const time = info.miningTime 
-			? info.miningTime / (producer.miningSpeed * (producer.miningPower - info.miningHardness)) 
+			? info.miningTime / producer.miningSpeed
 			: info.time / producer.speed;
 	
 		let pollutionByProducer = producer.pollution * time;
 		let pollutionByEnergy = (product == "coal") ? 0  // not quite correct, but close enough, and prevents infinite recursion
-														: producer.burns ? producer.burns * time / 8000 * getReport("coal").pollution
+														: producer.burns ? producer.burns * time / 4000 * getReport("coal").pollution
 														: producer.energy ? producer.energy * time * getReport("energy").pollution 
 														: 0;
 
