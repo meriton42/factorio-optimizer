@@ -199,7 +199,8 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				ironStick: 1,
 				steelPlate: 1,
 				stone: 1,
-			}
+			},
+			placeable: true,
 		},
 		pipe: {
 			time: 0.5,
