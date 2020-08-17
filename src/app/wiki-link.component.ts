@@ -3,8 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
 	selector: 'wiki-link',
 	template: `
-		<a [href]="'https://stable.wiki.factorio.com/' + (item | wikiPage)">
-			<img [src]="'https://stable.wiki.factorio.com/images/' + (item | wikiPage) + '.png'" width="16">
+		<a [href]="'https://wiki.factorio.com/' + (item | wikiPage)">
+			<img [src]="'https://wiki.factorio.com/images/' + (item | wikiPage) + '.png'" width="16">
 		</a>
 	`
 })
