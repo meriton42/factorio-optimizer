@@ -28,6 +28,7 @@ export const emptyCart = {
 	flyingRobotFrame: 0,
 	electricFurnace: 0,
 	battery: 0,
+	lowDensityStructure: 0,
 	efficiencyModule: 0,
 	efficiencyModule2: 0,
 	speedModule: 0,

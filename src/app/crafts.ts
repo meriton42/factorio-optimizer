@@ -306,6 +306,14 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				steelPlate: 1,
 			}
 		},
+		lowDensityStructure: {
+			time: 20,
+			consumes: {
+				copperPlate: 20,
+				plasticBar: 5,
+				steelPlate: 2,
+			}
+		},
 		electricFurnace: {
 			time: 5,
 			consumes: {
@@ -347,6 +355,15 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				rail: 30,
 			}
 		},
+		utilitySciencePack: {
+			produces: 3,
+			time: 21,
+			consumes: {
+				flyingRobotFrame: 1,
+				lowDensityStructure: 3,
+				processingUnit: 2, 
+			}
+		}
 	},
 	pumpJack: {
 		crudeOil: {
