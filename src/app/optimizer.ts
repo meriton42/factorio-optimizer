@@ -42,7 +42,7 @@ function createReport(product: Res) {
 		: info.time / producer.speed;
 
 	let pollutionByProducer = producer.pollution * time;
-	let pollutionByEnergy = (product == "coal") ? 0  // not quite correct, but close enough, and prevents infinite recursion
+	let pollutionByEnergy: number = (product == "coal") ? 0  // not quite correct, but close enough, and prevents infinite recursion
 													: producer.burns ? producer.burns * time / 4000 * getReport("coal").pollution
 													: producer.energy ? producer.energy * time * getReport("energy").pollution 
 													: 0;
