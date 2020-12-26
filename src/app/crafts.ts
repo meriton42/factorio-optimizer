@@ -265,6 +265,15 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			}, 
 			placeable: true
 		},
+		efficiencyModule3: {
+			time: 60,
+			consumes: {
+				advancedCircuit: 5,
+				efficiencyModule2: 5,
+				processingUnit: 5,
+			},
+			placeable: true
+		},
 		speedModule: {
 			time: 15,
 			consumes: {
@@ -273,11 +282,47 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 			}, 
 			placeable: true,
 		},
+		speedModule2: {
+			time: 30,
+			consumes: {
+				advancedCircuit: 5,
+				processingUnit: 5,
+				speedModule: 4,
+			},
+			placeable: true,
+		},
+		speedModule3: {
+			time: 60,
+			consumes: {
+				advancedCircuit: 5,
+				processingUnit: 5,
+				speedModule2: 5,
+			},
+			placeable: true,
+		},
 		productivityModule: {
 			time: 15,
 			consumes: {
 				advancedCircuit: 5,
 				electronicCircuit: 5,
+			},
+			placeable: true,
+		},
+		productivityModule2: {
+			time: 30,
+			consumes: {
+				advancedCircuit: 5,
+				processingUnit: 5,
+				productivityModule: 4,
+			},
+			placeable: true,
+		},
+		productivityModule3: {
+			time: 60,
+			consumes: {
+				advancedCircuit: 5,
+				processingUnit: 5,
+				productivityModule2: 5,
 			},
 			placeable: true,
 		},
