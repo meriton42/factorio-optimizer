@@ -19,7 +19,7 @@ const _producers = {
 			speed: 1,
 			slots: 0,
 		},
-		solar: {
+		solarPanel: {
 			pollution: 0,
 			production: 60,
 			energy: 0,
@@ -81,8 +81,8 @@ const _producers = {
 			slots: 4,
 		},
 	},
-	pumpJack: {
-		pumpJack: {
+	pumpjack: {
+		pumpjack: {
 			speed: 1,
 			pollution: 10,
 			energy: 90,
@@ -408,9 +408,117 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				lowDensityStructure: 3,
 				processingUnit: 2, 
 			}
+		},
+		boiler: {
+			time: 0.5,
+			consumes: {
+				pipe: 4,
+				stoneFurnace: 1,
+			},
+			placeable: true,
+		},
+		solarPanel: {
+			time: 10, 
+			consumes: {
+				copperPlate: 5,
+				electronicCircuit: 15,
+				steelPlate: 5,
+			},
+			placeable: true,
+		},
+		burnerMiningDrill: {
+			time: 2,
+			consumes: {
+				ironGearWheel: 3,
+				ironPlate: 3,
+				stoneFurnace: 1,
+			},
+			placeable: true,
+		},
+		electricMiningDrill: {
+			time: 2,
+			consumes: {
+				electronicCircuit: 3,
+				ironGearWheel: 5,
+				ironPlate: 10
+			},
+			placeable: true,
+		},
+		stoneFurnace: {
+			time: 0.5,
+			consumes: {
+				stone: 5,
+			},
+			placeable: true,
+		},
+		steelFurnace: {
+			time: 3,
+			consumes: {
+				steelPlate: 6,
+				stoneBrick: 10,
+			},
+			placeable: true,
+		},
+		assemblingMachine1: {
+			time: 0.5,
+			consumes: {
+				electronicCircuit: 3,
+				ironGearWheel: 5,
+				ironPlate: 9,
+			},
+			placeable: true,
+		},
+		assemblingMachine2: {
+			time: 0.5,
+			consumes: {
+				assemblingMachine1: 1,
+				electronicCircuit: 3,
+				ironGearWheel: 5,
+				steelPlate: 2
+			},
+			placeable: true,
+		},
+		assemblingMachine3: {
+			time: 0.5,
+			consumes: {
+				assemblingMachine2: 2,
+				speedModule: 4,
+			},
+			placeable: true,
+		},
+		pumpjack: {
+			time: 5,
+			consumes: {
+				electronicCircuit: 5,
+				ironGearWheel: 10,
+				pipe: 10,
+				steelPlate: 5
+			},
+			placeable: true,
+		},
+		oilRefinery: {
+			time: 8,
+			consumes: {
+				electronicCircuit: 10,
+				ironGearWheel: 10,
+				pipe: 10,
+				steelPlate: 15,
+				stoneBrick: 10,
+			},
+			placeable: true,
+		},
+		chemicalPlant: {
+			time: 5,
+			consumes: {
+				electronicCircuit: 5,
+				ironGearWheel: 5,
+				pipe: 5,
+				steelPlate: 5
+			},
+			placeable: true,
 		}
 	},
-	pumpJack: {
+	pumpjack: {
 		crudeOil: {
 			time: 1,
 			produces: 4, // minimum yield for average field would be 2

@@ -6,6 +6,7 @@ interface State {
 	preferredProducer: {[P in ProducerType]: ProducerName<P>};
 	available: {[P in ModuleName]?: boolean};
 	beaconSlots: {[R in Res]?: number};
+	amortizeOver: number;
 }
 
 const defaultState: State = {
@@ -14,12 +15,13 @@ const defaultState: State = {
 		furnace: "steelFurnace",
 		assembly: "assemblingMachine3",
 		energy: "boiler",
-		pumpJack: "pumpJack",
+		pumpjack: "pumpjack",
 		oilRefinery: "oilRefinery",
 		chemicalPlant: "chemicalPlant",
 	},
 	available: {},
 	beaconSlots: {...emptyCart},
+	amortizeOver: 4,
 }
 
 function merge(x, y) {

@@ -45,6 +45,17 @@ export const emptyCart = {
 	productionSciencePack: 0,
 	utilitySciencePack: 0,
 	spaceSciencePack: 0,
+	boiler: 0,
+	solarPanel: 0,
+	burnerMiningDrill: 0,
+	stoneFurnace: 0,
+	steelFurnace: 0,
+	assemblingMachine1: 0,
+	assemblingMachine2: 0,
+	assemblingMachine3: 0,
+	pumpjack: 0,
+	oilRefinery: 0,
+	chemicalPlant: 0,
 	energy: 0,
 }
 
