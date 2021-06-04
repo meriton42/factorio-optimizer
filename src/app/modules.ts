@@ -1,13 +1,13 @@
 const _modules = {
 	productivityModule: {
 		energy: 0.40,
-		speed: -0.15,
+		speed: -0.05,
 		productivity: 0.04,
 		pollution: 0.05,
 	},
 	productivityModule2: {
 		energy: 0.60,
-		speed: -0.15,
+		speed: -0.10,
 		productivity: 0.06,
 		pollution: 0.075,
 	},
