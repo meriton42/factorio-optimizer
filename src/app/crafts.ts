@@ -105,6 +105,14 @@ const _producers = {
 			slots: 3
 		}
 	},
+	research: {
+		lab: {
+			speed: 1,
+			energy: 60,
+			pollution: 0,
+			slots: 2,
+		}
+	}
 }
 export type ProducerType = keyof typeof _producers;
 export type ProducerName<P extends ProducerType> = keyof typeof _producers[P];
@@ -566,6 +574,11 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				sulfuricAcid: 20,
 			}
 		}
-	}
+	},
+	research: {
+		research: {
+			// will be overwritten by state
+		},
+	},
 }
 

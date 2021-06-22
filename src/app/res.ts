@@ -1,3 +1,13 @@
+export const emptyScienceCart = {
+	automationSciencePack: 0,
+	logisticSciencePack: 0,
+	militarySciencePack: 0,
+	chemicalSciencePack: 0,
+	productionSciencePack: 0,
+	utilitySciencePack: 0,
+	spaceSciencePack: 0,
+}
+
 export const emptyCart = {
   stone: 0,
 	coal: 0,
@@ -38,13 +48,7 @@ export const emptyCart = {
 	productivityModule: 0,
 	productivityModule2: 0,
 	productivityModule3: 0,
-	automationSciencePack: 0,
-	logisticSciencePack: 0,
-	militarySciencePack: 0,
-	chemicalSciencePack: 0,
-	productionSciencePack: 0,
-	utilitySciencePack: 0,
-	spaceSciencePack: 0,
+	...emptyScienceCart,
 	boiler: 0,
 	solarPanel: 0,
 	burnerMiningDrill: 0,
@@ -57,7 +61,11 @@ export const emptyCart = {
 	oilRefinery: 0,
 	chemicalPlant: 0,
 	energy: 0,
+	research: 0,
 }
 
+export const sciencePackNames = Object.keys(emptyScienceCart);
+
+export type ScienceRes = keyof typeof emptyScienceCart;
 export type Res = keyof typeof emptyCart;
 export type Cart = {[K in Res]?: number};

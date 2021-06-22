@@ -14,6 +14,10 @@ export function calculate() {
 			fullInfo[product] = {producerType, info: crafts[producerType][product]};
     }
 	}
+	fullInfo.research.info = {
+		time: state.scienceTime,
+		consumes: state.sciencePacks,
+	}
 
 	// since energy and investment considerations create cyclic dependencies
 	// we perform a few iterations to approach the fix point 
@@ -68,7 +72,9 @@ function createReport(product: Res) {
 	let pollutionByInputs = 0;
 	for (const res in info.consumes) {
 		const amount = info.consumes[res];
-		pollutionByInputs += getReport(res as Res).pollution.perItem * amount;
+		if (amount) {
+			pollutionByInputs += getReport(res as Res).pollution.perItem * amount;
+		}
 	}
 
 	const items = (producer.production || 1) * (info.produces || 1);

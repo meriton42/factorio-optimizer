@@ -26,6 +26,22 @@
 
   <h1>Amortization</h1>
   <input type="number" min="1" max="999" step="1" style="width: 6ch; text-align: right" [(ngModel)]="state.amortizeOver" (ngModelChange)="update()" > hours
+
+  <h1>Research</h1>
+  <table>
+    <tbody>
+      <tr *ngFor="let pack of sciencePackNames">
+        <td style="text-align: right"><input type="checkbox" [ngModel]="!!state.sciencePacks[pack]" (ngModelChange)="state.sciencePacks[pack] = $event ? 1 : 0; update()"></td>
+        <td><wiki-link [item]="pack"></wiki-link></td>
+        <td>{{pack | decamelize}}</td>
+      </tr>
+      <tr>
+        <td><input type="number" min="5" max="120" step="5" style="display: block; width: 5ch; margin-right: -2ch; text-align: right" [(ngModel)]="state.scienceTime" (ngModelChange)="update()"></td>
+        <td><wiki-link item="time"></wiki-link></td>
+        <td>Time</td>
+      </tr>
+    </tbody>
+  </table>
 </aside>
 
 <table>

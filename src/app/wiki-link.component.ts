@@ -14,6 +14,6 @@ export class WikiLinkComponent {
 
 	get image() {
 		const {item} = this;
-		return item == 'rail' ? 'straightRail' : item;
+		return item == 'rail' ? 'straightRail' : item == 'research' ? 'lab' : item;
 	}
 }

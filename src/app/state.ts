@@ -1,12 +1,14 @@
 import { ProducerType, ProducerName } from "./crafts";
 import { ModuleName } from './modules';
-import { emptyCart, Res } from './res';
+import { emptyCart, emptyScienceCart, Res, ScienceRes } from './res';
 
 interface State {
 	preferredProducer: {[P in ProducerType]: ProducerName<P>};
 	available: {[P in ModuleName]?: boolean};
 	beaconSlots: {[R in Res]?: number};
 	amortizeOver: number;
+	scienceTime: number;
+	sciencePacks: {[R in ScienceRes]?: number};
 }
 
 const defaultState: State = {
@@ -18,10 +20,13 @@ const defaultState: State = {
 		pumpjack: "pumpjack",
 		oilRefinery: "oilRefinery",
 		chemicalPlant: "chemicalPlant",
+		research: "lab",
 	},
 	available: {},
 	beaconSlots: {...emptyCart},
 	amortizeOver: 4,
+	scienceTime: 60,
+	sciencePacks: emptyScienceCart,
 }
 
 function merge(x, y) {

@@ -3,6 +3,7 @@ import { calculate } from './optimizer';
 import { state, saveState } from './state';
 import { producerTypes, ProducerType, producerNames, CraftInfo } from './crafts';
 import { moduleNames } from './modules';
+import { sciencePackNames } from './res';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
   state = state;
   producerTypes = producerTypes;
   moduleNames = moduleNames;
+  sciencePackNames = sciencePackNames;
   crafts: ReturnType<typeof calculate>;
 
   producerNames(type: ProducerType) {
