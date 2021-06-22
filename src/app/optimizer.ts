@@ -15,7 +15,7 @@ export function calculate() {
     }
 	}
 	fullInfo.research.info = {
-		time: state.scienceTime,
+		time: state.scienceTime / (state.scienceSpeed / 100),
 		consumes: state.sciencePacks,
 	}
 

@@ -40,6 +40,11 @@
         <td><wiki-link item="time"></wiki-link></td>
         <td>Time</td>
       </tr>
+      <tr>
+        <td><input type="number" min="100" max="350" step="10" style="display: block; width: 5ch; margin-right: -2ch; text-align: right" [(ngModel)]="state.scienceSpeed" (ngModelChange)="update()"></td>
+        <td>%</td>
+        <td>Research Speed</td>
+      </tr>
     </tbody>
   </table>
 </aside>

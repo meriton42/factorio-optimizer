@@ -524,6 +524,15 @@ export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
 				steelPlate: 5
 			},
 			placeable: true,
+		},
+		lab: {
+			time: 2,
+			consumes: {
+				electronicCircuit: 10,
+				ironGearWheel: 10,
+				transportBelt: 4,
+			},
+			placeable: true,
 		}
 	},
 	pumpjack: {

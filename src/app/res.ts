@@ -60,6 +60,7 @@ export const emptyCart = {
 	pumpjack: 0,
 	oilRefinery: 0,
 	chemicalPlant: 0,
+	lab: 0,
 	energy: 0,
 	research: 0,
 }

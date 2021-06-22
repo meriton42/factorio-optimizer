@@ -8,6 +8,7 @@ interface State {
 	beaconSlots: {[R in Res]?: number};
 	amortizeOver: number;
 	scienceTime: number;
+	scienceSpeed: number;
 	sciencePacks: {[R in ScienceRes]?: number};
 }
 
@@ -26,6 +27,7 @@ const defaultState: State = {
 	beaconSlots: {...emptyCart},
 	amortizeOver: 4,
 	scienceTime: 60,
+	scienceSpeed: 100,
 	sciencePacks: emptyScienceCart,
 }
 
