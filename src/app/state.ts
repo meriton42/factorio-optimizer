@@ -31,7 +31,7 @@ const defaultState: State = {
 	sciencePacks: emptyScienceCart,
 }
 
-function merge(x, y) {
+function merge(x: any, y: any) {
 	const r = {...x, ...y}; // shallow copy first level
 	for (const k in x) {
 		if (x[k] instanceof Object && x[k] != r[k]) {
@@ -44,9 +44,9 @@ function merge(x, y) {
 export const state: State = merge(defaultState, readState());
 
 function readState() {
-	return JSON.parse(localStorage.factorioOptimizerState || "{}");
+	return JSON.parse(localStorage['factorioOptimizerState'] || "{}");
 }
 
 export function saveState() {
-	localStorage.factorioOptimizerState = JSON.stringify(state);
+	localStorage['factorioOptimizerState'] = JSON.stringify(state);
 }

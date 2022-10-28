@@ -50,8 +50,8 @@ export class ModuleSet {
 	pollution = 0;
 	cost = 0;
 
-	previous: ModuleSet;
-	last: ModuleInfo;
+	previous!: ModuleSet;
+	last!: ModuleInfo;
 
 	plus(m: ModuleInfo) {
 		const r = new ModuleSet();
@@ -92,12 +92,12 @@ export class ModuleInfo extends ModuleSet {
 	}
 }
 export class NoModule extends ModuleSet {
-	energy = 1;
-	speed = 1;
-	productivity = 1;
-	pollution = 1;
+	override energy = 1;
+	override speed = 1;
+	override productivity = 1;
+	override pollution = 1;
 
-	get elements() {
+	override get elements() {
 		return [] as ModuleInfo[];
 	}
 }

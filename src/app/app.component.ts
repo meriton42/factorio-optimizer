@@ -19,11 +19,11 @@ export class AppComponent {
   producerTypes = producerTypes;
   moduleNames = moduleNames;
   sciencePackNames = sciencePackNames;
-  crafts: ReturnType<typeof calculate>;
+  crafts!: ReturnType<typeof calculate>;
 
-  producerNames(type: ProducerType) {
-    return producerNames(type);
-  }
+  preferredProducer = state.preferredProducer as Record<string, string>; // work around type checking limitations in angular templates
+
+  producerNames = producerNames;
 
   update() {
     saveState();

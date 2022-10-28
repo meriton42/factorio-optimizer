@@ -1,3 +1,5 @@
+import { knownKeys } from "./record-utils";
+
 export const emptyScienceCart = {
 	automationSciencePack: 0,
 	logisticSciencePack: 0,
@@ -65,7 +67,7 @@ export const emptyCart = {
 	research: 0,
 }
 
-export const sciencePackNames = Object.keys(emptyScienceCart);
+export const sciencePackNames = knownKeys(emptyScienceCart);
 
 export type ScienceRes = keyof typeof emptyScienceCart;
 export type Res = keyof typeof emptyCart;

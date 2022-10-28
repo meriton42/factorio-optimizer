@@ -5,7 +5,7 @@
       <tr *ngFor="let producerType of producerTypes">
         <td>{{producerType | decamelize}}</td>
         <td>
-          <select [(ngModel)]="state.preferredProducer[producerType]" (ngModelChange)="update()">
+          <select [(ngModel)]="preferredProducer[producerType]" (ngModelChange)="update()">
             <option *ngFor="let producer of producerNames(producerType)" [value]="producer">{{producer | decamelize}}</option>
           </select>
         </td>

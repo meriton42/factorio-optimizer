@@ -2,17 +2,18 @@ import { Res } from './res';
 import { crafts, CraftInfo, ProducerType, producers, ProducerInfo } from "./crafts";
 import { state } from './state';
 import { modules, ModuleSet, NoModule } from './modules';
+import { knownKeys } from './record-utils';
 
-let fullInfo: {[R in Res]?: {producerType: ProducerType, info: CraftInfo}};
+let fullInfo: {[R in Res]: {producerType: ProducerType, info: CraftInfo}};
 let previousReport: {[R in Res]?: Report};
 let report: {[R in Res]?: Report};
 
-export function calculate() {
-	fullInfo = {};
-  for (const producerType in crafts) {
-    for (const product in crafts[producerType]) {
-			fullInfo[product] = {producerType, info: crafts[producerType][product]};
-    }
+export function calculate(): Report[] {
+	fullInfo = {} as any;
+	for (const producerType of knownKeys(crafts)) {
+		for (const product of knownKeys(crafts[producerType])) {
+			fullInfo[product] = {producerType, info: crafts[producerType][product]!};
+		}
 	}
 	fullInfo.research.info = {
 		time: state.scienceTime / (state.scienceSpeed / 100),
@@ -31,15 +32,12 @@ export function calculate() {
 		previousReport = report;
 	}
 	const {energy, ...reports} = report;
-	console.log("60kW cause " + 60 * energy.pollution.perItem + " pollution");
-  return Object.values(reports);
+	console.log("60kW cause " + 60 * energy!.pollution.perItem + " pollution");
+	return Object.values(reports);
 }
 
 function getReport(product: Res): Report {
-	if (!report[product]) {
-		report[product] = createReport(product);
-	}
-	return report[product];
+	return report[product] || (report[product] = createReport(product));
 }
 
 function getPreviousReport(product: Res): {pollution: {perItem: number}} {
@@ -50,7 +48,7 @@ function getPreviousReport(product: Res): {pollution: {perItem: number}} {
 	};
 }
 
-type Report = ReturnType<typeof createReport>;
+export type Report = ReturnType<typeof createReport>;
 function createReport(product: Res) {
 	if (!fullInfo[product]) {
 		throw new Error("don't know how to make " + product);
@@ -58,10 +56,13 @@ function createReport(product: Res) {
 
 	const {producerType, info} = fullInfo[product];
 	const producerName = state.preferredProducer[producerType];
-	const producer = producers[producerType][producerName] as ProducerInfo;
+	function lookup<P extends ProducerType>(type: P): ProducerInfo { // the things we do for type safety ...
+		return producers[type][state.preferredProducer[type]];
+	}
+	const producer = lookup(producerType);
 	const time = info.miningTime 
-		? info.miningTime / producer.miningSpeed
-		: info.time / producer.speed;
+		? info.miningTime / producer.miningSpeed!
+		: info.time! / producer.speed!;
 
 	const producerInvestment: number = getPreviousReport(producerName).pollution.perItem;
 	const pollutionByProducer = producer.pollution / 60 * time;
@@ -71,7 +72,7 @@ function createReport(product: Res) {
 
 	let pollutionByInputs = 0;
 	for (const res in info.consumes) {
-		const amount = info.consumes[res];
+		const amount = info.consumes[res as Res];
 		if (amount) {
 			pollutionByInputs += getReport(res as Res).pollution.perItem * amount;
 		}
@@ -98,13 +99,13 @@ function createReport(product: Res) {
 	const availableModules = modules.filter(module => state.available[module.name] && !(module.name.startsWith("productivity") && info.placeable));
 	const minIndexForBeacon = availableModules.findIndex(module => !module.name.startsWith("productivity"));
 	const slots = producer.slots;
-	const beaconSlots = state.beaconSlots[product];
+	const beaconSlots = state.beaconSlots[product] || 0;
 	for (const module of availableModules) {
 		module.cost = getPreviousReport(module.name).pollution.perItem;
 	}	
 
 	let bestPollution = Infinity;
-	let bestModules: ModuleSet = null;
+	let bestModules: ModuleSet = null!;
 	const explore = (index: number, size: number, currentModules: ModuleSet) => {
 		const pollution = calculatePollution(currentModules);
 		if (pollution.perItem < bestPollution) {

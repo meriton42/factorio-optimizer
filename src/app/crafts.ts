@@ -1,4 +1,5 @@
 import { Cart, Res } from './res';
+import { knownKeys } from './record-utils';
 
 export interface ProducerInfo {
 	miningSpeed?: number;
@@ -117,8 +118,8 @@ const _producers = {
 export type ProducerType = keyof typeof _producers;
 export type ProducerName<P extends ProducerType> = keyof typeof _producers[P];
 export const producers: {[P in ProducerType]: {[N in ProducerName<P>]: ProducerInfo}} = _producers;
-export const producerTypes = Object.keys(producers);
-export function producerNames(producerType: ProducerType) {
+export const producerTypes = knownKeys(producers);
+export function producerNames<T extends ProducerType>(producerType: T) {
 	return Object.keys(producers[producerType]);
 }
 
@@ -131,7 +132,7 @@ export interface CraftInfo {
 	placeable?: boolean; 
 }
 
-export const crafts: {[P in ProducerType]?: {[R in Res]?: CraftInfo}} = {
+export const crafts: {[P in ProducerType]: {[R in Res]?: CraftInfo}} = {
 	energy: {
 		energy: {
 			time: 1,
