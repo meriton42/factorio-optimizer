@@ -1,67 +1,50 @@
 <aside>
   <h1>Production Technology</h1>
-  <table>
-    <tbody>
-      @for (producerType of producerTypes; track $index) {
-        <tr>
-          <td>{{producerType | decamelize}}</td>
-          <td>
-            <select [(ngModel)]="preferredProducer[producerType]" (ngModelChange)="update()">
-              @for (producer of producerNames(producerType); track $index) {
-                <option [value]="producer">{{producer | decamelize}}</option>
-              }
-            </select>
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
+  <div class="formGrid">
+    @for (producerType of producerTypes; track $index) {
+      <label>{{producerType | decamelize}}</label>
+      <select [(ngModel)]="preferredProducer[producerType]" (ngModelChange)="update()">
+        @for (producer of producerNames(producerType); track $index) {
+          <option [value]="producer">{{producer | decamelize}}</option>
+        }
+      </select>
+    }
+  </div>
 
   <h1>Available Modules</h1>
-  <table>
-    <tbody>
-      @for (module of moduleNames; track $index) {
-        <tr>
-          <td><input type="checkbox" [(ngModel)]="state.available[module]" (ngModelChange)="update()"></td>
-          <td><wiki-link [item]="module"></wiki-link></td>
-          <td>{{module | decamelize}}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
+  <div class="checkboxGrid">
+    @for (module of moduleNames; track $index) {
+      <input type="checkbox" [(ngModel)]="state.available[module]" (ngModelChange)="update()">
+      <wiki-link [item]="module"/>
+      {{module | decamelize}}
+    }
+  </div>
 
   <h1>Amortization</h1>
   <input type="number" min="1" max="999" step="1" style="width: 6ch; text-align: right" [(ngModel)]="state.amortizeOver" (ngModelChange)="update()" > hours
 
   <h1>Research</h1>
-  <table>
-    <tbody>
-      @for (pack of sciencePackNames; track pack) {
-        <tr>
-          <td style="text-align: right"><input type="checkbox" [ngModel]="!!state.sciencePacks[pack]" (ngModelChange)="state.sciencePacks[pack] = $event ? 1 : 0; update()"></td>
-          <td><wiki-link [item]="pack"></wiki-link></td>
-          <td>{{pack | decamelize}}</td>
-        </tr>
-      }
-      <tr>
-        <td><input type="number" min="5" max="120" step="5" style="display: block; width: 5ch; margin-right: -2ch; text-align: right" [(ngModel)]="state.scienceTime" (ngModelChange)="update()"></td>
-        <td><wiki-link item="time"></wiki-link></td>
-        <td>Time</td>
-      </tr>
-      <tr>
-        <td><input type="number" min="100" max="350" step="10" style="display: block; width: 5ch; margin-right: -2ch; text-align: right" [(ngModel)]="state.scienceSpeed" (ngModelChange)="update()"></td>
-        <td>%</td>
-        <td>Research Speed</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="checkboxGrid">
+    @for (pack of sciencePackNames; track pack) {
+      <input type="checkbox" [ngModel]="!!state.sciencePacks[pack]" (ngModelChange)="state.sciencePacks[pack] = $event ? 1 : 0; update()">
+      <wiki-link [item]="pack"/>
+      {{pack | decamelize}}
+    }
+    <input type="number" min="5" max="120" step="5" style="display: block; width: 5ch; margin-right: -2ch; text-align: right" [(ngModel)]="state.scienceTime" (ngModelChange)="update()">
+    <wiki-link item="time"/>
+    Time
+
+    <input type="number" min="100" max="350" step="10" style="display: block; width: 5ch; margin-right: -2ch; text-align: right" [(ngModel)]="state.scienceSpeed" (ngModelChange)="update()">
+    <div>%</div>
+    Research Speed
+  </div>
 </aside>
 
 <table>
   <thead>
     <tr>
       <th colspan="2">Product</th>
-      <th colspan="4">Pollution by</th>
+      <th colspan="4">Pollution by ...</th>
       <th>Per Item</th>
       <th>Best Modules</th>
       <th>Beacons</th>
@@ -85,7 +68,7 @@
         <td style="text-align: right">{{craft.pollution.producer.toFixed(2)}}</td>
         <td style="text-align: right">{{craft.pollution.energy.toFixed(2)}}</td>
         <td style="text-align: right">{{craft.pollution.perItem.toFixed(2)}}</td>
-        <td>
+        <td style="display: flex">
           @for (module of craft.bestModules; track $index) {
             <wiki-link [item]="module.name"/>
           }

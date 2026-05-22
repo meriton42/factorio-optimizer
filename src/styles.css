@@ -14,7 +14,6 @@ aside > h1:first-child {
 h1 {
 	font-size: 1em;
 	margin-bottom: 0.5em;
-	text-align: center;
 }
 
 table {
@@ -22,7 +21,11 @@ table {
 	margin-bottom: 1em;
 }
 
-td {
+th {
+	text-align: left;
+}
+
+th, td {
 	padding: 0 0.5em;
 }
 
@@ -30,6 +33,18 @@ td > select {
 	width: 100%;
 }
 
-td > input {
+input {
 	border-style: none;
+}
+
+.formGrid {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	column-gap: 1em;
+}
+
+.checkboxGrid {
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	align-items: center;
 }
