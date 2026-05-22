@@ -80,11 +80,11 @@
       <tr>
         <td><wiki-link [item]="craft.product"></wiki-link></td>
         <td>{{craft.product | decamelize}}</td>
-        <td style="text-align: right">{{craft.pollution.inputs | number:'0.2-2'}}</td>
-        <td style="text-align: right">{{craft.pollution.investment | number:'0.2-2'}}</td>
-        <td style="text-align: right">{{craft.pollution.producer | number:'0.2-2'}}</td>
-        <td style="text-align: right">{{craft.pollution.energy | number:'0.2-2'}}</td>
-        <td style="text-align: right">{{craft.pollution.perItem | number:'0.2-2'}}</td>
+        <td style="text-align: right">{{craft.pollution.inputs.toFixed(2)}}</td>
+        <td style="text-align: right">{{craft.pollution.investment.toFixed(2)}}</td>
+        <td style="text-align: right">{{craft.pollution.producer.toFixed(2)}}</td>
+        <td style="text-align: right">{{craft.pollution.energy.toFixed(2)}}</td>
+        <td style="text-align: right">{{craft.pollution.perItem.toFixed(2)}}</td>
         <td><wiki-link *ngFor="let module of craft.bestModules" [item]="module.name"></wiki-link></td>
         <td><input type="number" min="0" max="16" style="width: 4ch" [(ngModel)]="state.beaconSlots[craft.product]" (ngModelChange)="update()"></td>
       </tr>
