@@ -4,9 +4,11 @@ import { state, saveState } from './state';
 import { producerTypes, ProducerType, producerNames, CraftInfo } from './crafts';
 import { moduleNames } from './modules';
 import { sciencePackNames } from './res';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
+  imports: [ FormsModule ],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
