@@ -5,13 +5,15 @@ import { producerTypes, ProducerType, producerNames, CraftInfo } from './crafts'
 import { moduleNames } from './modules';
 import { sciencePackNames } from './res';
 import { FormsModule } from '@angular/forms';
+import { WikiLink } from './wiki-link';
+import { DecamelizePipe } from './pipes';
 
 @Component({
   selector: 'app-root',
-  imports: [ FormsModule ],
-  templateUrl: './app.component.html',
+  imports: [ FormsModule, DecamelizePipe, WikiLink ],
+  templateUrl: './app.html',
 })
-export class AppComponent {
+export class App {
 
   constructor() {
     this.update();
