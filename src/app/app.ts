@@ -33,8 +33,4 @@ export class App {
     saveState();
     this.crafts = calculate();
   }
-
-  byProduct(index: any, item: any) {
-    return item.product;
-  }
 }

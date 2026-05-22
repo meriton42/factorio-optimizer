@@ -2,25 +2,31 @@
   <h1>Production Technology</h1>
   <table>
     <tbody>
-      <tr *ngFor="let producerType of producerTypes">
-        <td>{{producerType | decamelize}}</td>
-        <td>
-          <select [(ngModel)]="preferredProducer[producerType]" (ngModelChange)="update()">
-            <option *ngFor="let producer of producerNames(producerType)" [value]="producer">{{producer | decamelize}}</option>
-          </select>
-        </td>
-      </tr>
+      @for (producerType of producerTypes; track $index) {
+        <tr>
+          <td>{{producerType | decamelize}}</td>
+          <td>
+            <select [(ngModel)]="preferredProducer[producerType]" (ngModelChange)="update()">
+              @for (producer of producerNames(producerType); track $index) {
+                <option [value]="producer">{{producer | decamelize}}</option>
+              }
+            </select>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 
   <h1>Available Modules</h1>
   <table>
     <tbody>
-      <tr *ngFor="let module of moduleNames">
-        <td><input type="checkbox" [(ngModel)]="state.available[module]" (ngModelChange)="update()"></td>
-        <td><wiki-link [item]="module"></wiki-link></td>
-        <td>{{module | decamelize}}</td>
-      </tr>
+      @for (module of moduleNames; track $index) {
+        <tr>
+          <td><input type="checkbox" [(ngModel)]="state.available[module]" (ngModelChange)="update()"></td>
+          <td><wiki-link [item]="module"></wiki-link></td>
+          <td>{{module | decamelize}}</td>
+        </tr>
+      }
     </tbody>
   </table>
 
@@ -30,11 +36,13 @@
   <h1>Research</h1>
   <table>
     <tbody>
-      <tr *ngFor="let pack of sciencePackNames">
-        <td style="text-align: right"><input type="checkbox" [ngModel]="!!state.sciencePacks[pack]" (ngModelChange)="state.sciencePacks[pack] = $event ? 1 : 0; update()"></td>
-        <td><wiki-link [item]="pack"></wiki-link></td>
-        <td>{{pack | decamelize}}</td>
-      </tr>
+      @for (pack of sciencePackNames; track pack) {
+        <tr>
+          <td style="text-align: right"><input type="checkbox" [ngModel]="!!state.sciencePacks[pack]" (ngModelChange)="state.sciencePacks[pack] = $event ? 1 : 0; update()"></td>
+          <td><wiki-link [item]="pack"></wiki-link></td>
+          <td>{{pack | decamelize}}</td>
+        </tr>
+      }
       <tr>
         <td><input type="number" min="5" max="120" step="5" style="display: block; width: 5ch; margin-right: -2ch; text-align: right" [(ngModel)]="state.scienceTime" (ngModelChange)="update()"></td>
         <td><wiki-link item="time"></wiki-link></td>
@@ -68,16 +76,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let craft of crafts; trackBy: byProduct">
-      <td><wiki-link [item]="craft.product"></wiki-link></td>
-      <td>{{craft.product | decamelize}}</td>
-      <td style="text-align: right">{{craft.pollution.inputs | number:'0.2-2'}}</td>
-      <td style="text-align: right">{{craft.pollution.investment | number:'0.2-2'}}</td>
-      <td style="text-align: right">{{craft.pollution.producer | number:'0.2-2'}}</td>
-      <td style="text-align: right">{{craft.pollution.energy | number:'0.2-2'}}</td>
-      <td style="text-align: right">{{craft.pollution.perItem | number:'0.2-2'}}</td>
-      <td><wiki-link *ngFor="let module of craft.bestModules" [item]="module.name"></wiki-link></td>
-      <td><input type="number" min="0" max="16" style="width: 4ch" [(ngModel)]="state.beaconSlots[craft.product]" (ngModelChange)="update()"></td>
-    </tr>
+    @for (craft of crafts; track craft.product) {
+      <tr>
+        <td><wiki-link [item]="craft.product"></wiki-link></td>
+        <td>{{craft.product | decamelize}}</td>
+        <td style="text-align: right">{{craft.pollution.inputs | number:'0.2-2'}}</td>
+        <td style="text-align: right">{{craft.pollution.investment | number:'0.2-2'}}</td>
+        <td style="text-align: right">{{craft.pollution.producer | number:'0.2-2'}}</td>
+        <td style="text-align: right">{{craft.pollution.energy | number:'0.2-2'}}</td>
+        <td style="text-align: right">{{craft.pollution.perItem | number:'0.2-2'}}</td>
+        <td><wiki-link *ngFor="let module of craft.bestModules" [item]="module.name"></wiki-link></td>
+        <td><input type="number" min="0" max="16" style="width: 4ch" [(ngModel)]="state.beaconSlots[craft.product]" (ngModelChange)="update()"></td>
+      </tr>
+    }
   </tbody>
 </table>
