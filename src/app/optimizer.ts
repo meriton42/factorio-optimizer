@@ -97,7 +97,8 @@ function createReport(product: Res) {
 		}
 	}
 	
-	const availableModules = modules.filter(module => state.available[module.name] && !(module.name.startsWith("productivity") && info.placeable));
+	const allowProductivity = info.allowProductivity ?? true;
+	const availableModules = modules.filter(module => state.available[module.name] && (module.name.startsWith("productivity") ? allowProductivity : true));
 	const minIndexForBeacon = availableModules.findIndex(module => !module.name.startsWith("productivity"));
 	const slots = producer.slots;
 	const beaconSlots = state.beaconSlots[product] || 0;

@@ -6,8 +6,7 @@ export interface RecipeInfo {
 	time?: number;
 	consumes?: Cart;
 	produces?: number;
-	/** placeable products can not accept productivity modules */
-	placeable?: boolean; 
+	allowProductivity?: boolean; 
 }
 
 export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
@@ -77,7 +76,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				ironPlate: 1,
 				ironGearWheel: 1,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		rail: {
 			produces: 2,
@@ -87,14 +86,14 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				steelPlate: 1,
 				stone: 1,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		pipe: {
 			time: 0.5,
 			consumes: {
 				ironPlate: 1,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		copperCable: {
 			produces: 2,
@@ -117,7 +116,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				ironGearWheel: 1,
 				ironPlate: 1,
 			},
-			placeable: true,
+			allowProductivity: false,
 		}, 
 		advancedCircuit: {
 			time: 6,
@@ -141,7 +140,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				advancedCircuit: 5,
 				electronicCircuit: 5,				
 			}, 
-			placeable: true,
+			allowProductivity: false,
 		},
 		efficiencyModule2: {
 			time: 30,
@@ -150,7 +149,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				efficiencyModule: 4,
 				processingUnit: 5,
 			}, 
-			placeable: true
+			allowProductivity: false
 		},
 		efficiencyModule3: {
 			time: 60,
@@ -159,7 +158,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				efficiencyModule2: 5,
 				processingUnit: 5,
 			},
-			placeable: true
+			allowProductivity: false
 		},
 		speedModule: {
 			time: 15,
@@ -167,7 +166,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				advancedCircuit: 5,
 				electronicCircuit: 5,				
 			}, 
-			placeable: true,
+			allowProductivity: false,
 		},
 		speedModule2: {
 			time: 30,
@@ -176,7 +175,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				processingUnit: 5,
 				speedModule: 4,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		speedModule3: {
 			time: 60,
@@ -185,7 +184,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				processingUnit: 5,
 				speedModule2: 5,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		productivityModule: {
 			time: 15,
@@ -193,7 +192,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				advancedCircuit: 5,
 				electronicCircuit: 5,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		productivityModule2: {
 			time: 30,
@@ -202,7 +201,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				processingUnit: 5,
 				productivityModule: 4,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		productivityModule3: {
 			time: 60,
@@ -211,7 +210,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				processingUnit: 5,
 				productivityModule2: 5,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		engineUnit: {
 			time: 10,
@@ -253,7 +252,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				steelPlate: 10,
 				stoneBrick: 10,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		automationSciencePack: {
 			time: 5,
@@ -302,7 +301,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				pipe: 4,
 				stoneFurnace: 1,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		solarPanel: {
 			time: 10, 
@@ -311,7 +310,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				electronicCircuit: 15,
 				steelPlate: 5,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		burnerMiningDrill: {
 			time: 2,
@@ -320,7 +319,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				ironPlate: 3,
 				stoneFurnace: 1,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		electricMiningDrill: {
 			time: 2,
@@ -329,14 +328,14 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				ironGearWheel: 5,
 				ironPlate: 10
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		stoneFurnace: {
 			time: 0.5,
 			consumes: {
 				stone: 5,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		steelFurnace: {
 			time: 3,
@@ -344,7 +343,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				steelPlate: 6,
 				stoneBrick: 10,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		assemblingMachine1: {
 			time: 0.5,
@@ -353,7 +352,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				ironGearWheel: 5,
 				ironPlate: 9,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		assemblingMachine2: {
 			time: 0.5,
@@ -363,7 +362,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				ironGearWheel: 5,
 				steelPlate: 2
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		assemblingMachine3: {
 			time: 0.5,
@@ -371,7 +370,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				assemblingMachine2: 2,
 				speedModule: 4,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		pumpjack: {
 			time: 5,
@@ -381,7 +380,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				pipe: 10,
 				steelPlate: 5
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		oilRefinery: {
 			time: 8,
@@ -392,7 +391,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				steelPlate: 15,
 				stoneBrick: 10,
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		chemicalPlant: {
 			time: 5,
@@ -402,7 +401,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				pipe: 5,
 				steelPlate: 5
 			},
-			placeable: true,
+			allowProductivity: false,
 		},
 		lab: {
 			time: 2,
@@ -411,7 +410,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 				ironGearWheel: 10,
 				transportBelt: 4,
 			},
-			placeable: true,
+			allowProductivity: false,
 		}
 	},
 	pumpjack: {
