@@ -1,8 +1,7 @@
 import { knownKeys } from './record-utils';
 
 export interface ProducerInfo {
-	miningSpeed?: number;
-	speed?: number;
+	speed: number;
 	burns?: number;
 	energy?: number;
 	pollution: number;
@@ -29,13 +28,13 @@ const _producers = {
 	},
 	mine: {
 		burnerMiningDrill: {
-			miningSpeed: 0.25,
+			speed: 0.25,
 			burns: 150,
 			pollution: 12,
 			slots: 0,
 		},
 		electricMiningDrill: {
-			miningSpeed: 0.5,
+			speed: 0.5,
 			energy: 90,
 			pollution: 10,
 			slots: 3,

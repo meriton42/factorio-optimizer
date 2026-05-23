@@ -61,9 +61,7 @@ function createReport(product: Res) {
 		return producers[type][state.preferredProducer[type]];
 	}
 	const producer = lookup(producerType);
-	const time = info.miningTime 
-		? info.miningTime / producer.miningSpeed!
-		: info.time! / producer.speed!;
+	const time = info.time / producer.speed;
 
 	const producerInvestment: number = getPreviousReport(producerName).pollution.perItem;
 	const pollutionByProducer = producer.pollution / 60 * time;

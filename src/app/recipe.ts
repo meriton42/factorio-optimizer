@@ -2,8 +2,7 @@ import { ProducerType } from "./producer";
 import { Cart, Res } from "./res";
 
 export interface RecipeInfo {
-	miningTime?: number;
-	time?: number;
+	time: number;
 	consumes?: Cart;
 	produces?: number;
 	allowProductivity?: boolean; 
@@ -17,16 +16,16 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 	},
 	mine: {
 		coal: {
-			miningTime: 1,
+			time: 1,
 		},
 		ironOre: {
-			miningTime: 1,
+			time: 1,
 		},
 		copperOre: {
-			miningTime: 1,
+			time: 1,
 		},
 		stone: {
-			miningTime: 1,
+			time: 1,
 		},
 	},
 	furnace: {
@@ -465,6 +464,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 	research: {
 		research: {
 			// will be overwritten by state
+            time: 1,
 		},
 	},
 }
