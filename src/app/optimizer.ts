@@ -1,18 +1,19 @@
 import { Res } from './res';
-import { crafts, CraftInfo, ProducerType, producers, ProducerInfo } from "./crafts";
+import { ProducerType, producers, ProducerInfo } from "./producer";
 import { state } from './state';
 import { modules, ModuleSet, NoModule } from './modules';
 import { knownKeys } from './record-utils';
+import { RecipeInfo, recipes } from './recipe';
 
-let fullInfo: {[R in Res]: {producerType: ProducerType, info: CraftInfo}};
+let fullInfo: {[R in Res]: {producerType: ProducerType, info: RecipeInfo}};
 let previousReport: {[R in Res]?: Report};
 let report: {[R in Res]?: Report};
 
 export function calculate(): Report[] {
 	fullInfo = {} as any;
-	for (const producerType of knownKeys(crafts)) {
-		for (const product of knownKeys(crafts[producerType])) {
-			fullInfo[product] = {producerType, info: crafts[producerType][product]!};
+	for (const producerType of knownKeys(recipes)) {
+		for (const product of knownKeys(recipes[producerType])) {
+			fullInfo[product] = {producerType, info: recipes[producerType][product]!};
 		}
 	}
 	fullInfo.research.info = {

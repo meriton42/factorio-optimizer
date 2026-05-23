@@ -1,4 +1,4 @@
-import { ProducerType, ProducerName } from "./crafts";
+import { ProducerType, ProducerName } from "./producer";
 import { ModuleName } from './modules';
 import { emptyCart, emptyScienceCart, Res, ScienceRes } from './res';
 

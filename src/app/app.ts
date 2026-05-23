@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { calculate } from './optimizer';
 import { state, saveState } from './state';
-import { producerTypes, ProducerType, producerNames, CraftInfo } from './crafts';
+import { producerTypes, producerNames } from './producer';
 import { moduleNames } from './modules';
 import { sciencePackNames } from './res';
 import { FormsModule } from '@angular/forms';
