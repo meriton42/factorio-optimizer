@@ -21,6 +21,10 @@ table {
 	margin-bottom: 1em;
 }
 
+tbody > tr:hover {
+	background-color: #ddd;
+}
+
 th {
 	text-align: left;
 }
