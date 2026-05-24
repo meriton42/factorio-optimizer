@@ -106,7 +106,9 @@ function createReport(product: Res) {
 	const availableModules = modules.filter(module => state.available[module.name] && (module.name.startsWith("productivity") ? info.allowProductivity : true));
 	const minIndexForBeacon = availableModules.findIndex(module => !module.name.startsWith("productivity"));
 	const slots = producer.slots;
-	const beaconSlots = state.beaconSlots[product] || 0;
+	const beacons = state.beacons[product]!;
+	const beaconSlots = beacons * 2;
+	const beaconTransmissionStrength = 1.5 / Math.sqrt(beacons);
 	for (const module of availableModules) {
 		module.cost = getPreviousReport(module.name).pollution.perItem;
 	}	
@@ -126,7 +128,7 @@ function createReport(product: Res) {
 			}
 			for (let i = index; i < availableModules.length; i++) {
 				const module = availableModules[i];
-				explore(i, size + 1, currentModules.plus(module));
+				explore(i, size + 1, currentModules.plus(module, size < slots ? 1 : beaconTransmissionStrength));
 			}
 		}
 	}

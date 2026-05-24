@@ -5,7 +5,7 @@ import { emptyCart, emptyScienceCart, Res, ScienceRes } from './res';
 interface State {
 	preferredProducer: {[P in ProducerType]: ProducerName<P>};
 	available: {[P in ModuleName]?: boolean};
-	beaconSlots: {[R in Res]?: number};
+	beacons: {[R in Res]?: number};
 	amortizeOver: number;
 	scienceTime: number;
 	scienceSpeed: number;
@@ -25,7 +25,7 @@ const defaultState: State = {
 		research: "lab",
 	},
 	available: {},
-	beaconSlots: {...emptyCart},
+	beacons: {...emptyCart},
 	amortizeOver: 4,
 	scienceTime: 60,
 	scienceSpeed: 100,

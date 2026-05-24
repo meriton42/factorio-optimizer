@@ -53,12 +53,12 @@ export class ModuleSet {
 	previous!: ModuleSet;
 	last!: ModuleInfo;
 
-	plus(m: ModuleInfo) {
+	plus(m: ModuleInfo, transmissionStrength: number) {
 		const r = new ModuleSet();
-		r.speed = this.speed + m.speed;
-		r.energy = this.energy + m.energy;
-		r.pollution = this.pollution + m.pollution;
-		r.productivity = this.productivity + m.productivity;
+		r.speed = this.speed + m.speed * transmissionStrength;
+		r.energy = this.energy + m.energy * transmissionStrength;
+		r.pollution = this.pollution + m.pollution * transmissionStrength;
+		r.productivity = this.productivity + m.productivity * transmissionStrength;
 		r.cost = this.cost + m.cost;
 
 		r.previous = this;

@@ -73,7 +73,7 @@
             <wiki-link [item]="module.name"/>
           }
         </td>
-        <td><input type="number" min="0" max="16" style="width: 4ch" [(ngModel)]="state.beaconSlots[craft.product]" (ngModelChange)="update()"></td>
+        <td><input type="number" min="0" max="8" style="width: 4ch" [(ngModel)]="state.beacons[craft.product]" (ngModelChange)="update()"></td>
       </tr>
     }
   </tbody>
