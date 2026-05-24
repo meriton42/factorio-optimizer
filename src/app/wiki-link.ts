@@ -12,7 +12,7 @@ import { Res } from './res';
 	`,
 })
 export class WikiLink {
-	item = input.required<Res>();
+	item = input.required<Res | "time">();
 
 	get image() {
 		const item = this.item();
@@ -20,7 +20,7 @@ export class WikiLink {
 	}
 }
 
-const overrideImage: {[R in Res]?: string} = {
+const overrideImage: {[R in Res | "time"]?: string} = {
 	rail: 'straightRail',
 	research: 'lab',
 	stoneWall: 'wall',
