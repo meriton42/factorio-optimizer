@@ -2,12 +2,14 @@
   <h1>Production Technology</h1>
   <div class="formGrid">
     @for (producerType of producerTypes; track $index) {
-      <label>{{producerType | decamelize}}</label>
-      <select [(ngModel)]="preferredProducer[producerType]" (ngModelChange)="update()">
-        @for (producer of producerNames(producerType); track $index) {
-          <option [value]="producer">{{producer | decamelize}}</option>
-        }
-      </select>
+      @if (producerNames(producerType).length > 1) {
+        <label>{{producerType | decamelize}}</label>
+        <select [(ngModel)]="preferredProducer[producerType]" (ngModelChange)="update()">
+          @for (producer of producerNames(producerType); track $index) {
+            <option [value]="producer">{{producer | decamelize}}</option>
+          }
+        </select>
+      }
     }
   </div>
 
