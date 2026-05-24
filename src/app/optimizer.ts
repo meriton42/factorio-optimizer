@@ -77,7 +77,7 @@ function createReport(product: Res) {
 		}
 	}
 
-	const items = (producer.production || 1) * (info.produces || 1);
+	const items = producer.production ?? info.produces ?? 1;
 
 	const calculatePollution = (modules: ModuleSet) => {
 		const {effectOn} = modules;
