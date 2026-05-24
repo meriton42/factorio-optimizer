@@ -20,6 +20,7 @@ export function calculate(): Report[] {
 	fullInfo.research.info = {
 		time: state.scienceTime / (state.scienceSpeed / 100),
 		consumes: state.sciencePacks,
+		allowProductivity: true,
 	}
 
 	// reporting all products would result in an extremely long list, so we only report prerequisites of a particular product
