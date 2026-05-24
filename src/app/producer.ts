@@ -26,6 +26,14 @@ const _producers = {
 			slots: 0,
 		}
 	},
+	water: {
+		offshorePump: {
+			pollution: 0,
+			production: 1200,
+			speed: 1,
+			slots: 0,
+		},
+	},
 	mine: {
 		burnerMiningDrill: {
 			speed: 0.25,

@@ -1,4 +1,4 @@
-import { Res } from './res';
+import { Res, sciencePackNames } from './res';
 import { ProducerType, producers, ProducerInfo } from "./producer";
 import { state } from './state';
 import { modules, ModuleSet, NoModule } from './modules';
@@ -7,6 +7,7 @@ import { RecipeInfo, recipes } from './recipe';
 
 let fullInfo: {[R in Res]: {producerType: ProducerType, info: RecipeInfo}};
 let previousReport: {[R in Res]?: Report};
+let reportRequested: {[R in Res]?: boolean};
 let report: {[R in Res]?: Report};
 
 export function calculate(): Report[] {
@@ -21,13 +22,19 @@ export function calculate(): Report[] {
 		consumes: state.sciencePacks,
 	}
 
+	// reporting all products would result in an extremely long list, so we only report prerequisites of a particular product
+	// ... and to make the list easier to navigate, we do so in topological order:
+	// first the inputs, then the product itself, and then indirect prerequisites (producer, modules, energy)
+	reportRequested = {};
+	reportRequested.research = true;
+
 	// since energy and investment considerations create cyclic dependencies
 	// we perform a few iterations to approach the fix point 
 	// (this should converge because prices are monotonically increasing across iterations)
 	previousReport = {};
 	for (let i = 0; i < 10; i++) {
 		report = {};
-		for (const product in fullInfo) {
+		for (const product in reportRequested) {
 			getReport(product as Res);
 		}
 		previousReport = report;
@@ -42,6 +49,7 @@ function getReport(product: Res): Report {
 }
 
 function getPreviousReport(product: Res): {pollution: {perItem: number}} {
+	reportRequested[product] = true;
 	return previousReport[product] || {
 		pollution: {
 			perItem: 0,
@@ -95,8 +103,7 @@ function createReport(product: Res) {
 		}
 	}
 	
-	const allowProductivity = info.allowProductivity ?? true;
-	const availableModules = modules.filter(module => state.available[module.name] && (module.name.startsWith("productivity") ? allowProductivity : true));
+	const availableModules = modules.filter(module => state.available[module.name] && (module.name.startsWith("productivity") ? info.allowProductivity : true));
 	const minIndexForBeacon = availableModules.findIndex(module => !module.name.startsWith("productivity"));
 	const slots = producer.slots;
 	const beaconSlots = state.beaconSlots[product] || 0;

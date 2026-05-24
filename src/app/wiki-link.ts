@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { WikiPagePipe } from './pipes';
+import { Res } from './res';
 
 @Component({
 	selector: 'wiki-link',
@@ -11,10 +12,16 @@ import { WikiPagePipe } from './pipes';
 	`,
 })
 export class WikiLink {
-	item = input.required<string>();
+	item = input.required<Res>();
 
 	get image() {
 		const item = this.item();
-		return item == 'rail' ? 'straightRail' : item == 'research' ? 'lab' : item;
+		return overrideImage[item] ?? item;
 	}
+}
+
+const overrideImage: {[R in Res]?: string} = {
+	rail: 'straightRail',
+	research: 'lab',
+	stoneWall: 'wall',
 }

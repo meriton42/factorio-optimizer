@@ -18,6 +18,7 @@ const defaultState: State = {
 		furnace: "steelFurnace",
 		assembly: "assemblingMachine3",
 		energy: "boiler",
+		water: "offshorePump",
 		pumpjack: "pumpjack",
 		oilRefinery: "oilRefinery",
 		chemicalPlant: "chemicalPlant",
