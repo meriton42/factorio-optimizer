@@ -44,7 +44,7 @@ function generateCode(rawRecipes) {
         "basic-oil-processing": true, // less efficient than advanced oil processing
         "coal-liquefaction": true, // probably less efficient than advanced oil processing
         "solid-fuel-from-petroleum-gas": true, // less efficient than advanced oil processing
-        "solid-fuel-from-light-oil": true, // light oil seems more valuable than heavy oil
+        "solid-fuel-from-heavy-oil": true, // light oil is more efficient
         "light-oil-cracking": true, // less important than advanced oil processing
 
         // we don't yet support nuclear power (needs support for probabilistic outputs and selectable recipes for U-235)
@@ -134,9 +134,9 @@ function generateCode(rawRecipes) {
             product = "petroleumGas";
             produces = 55;
 
-            // and give the heavyOil for free
+            // and give the heavy and light oil for free
             recipes[producer] = recipes[producer] ?? {};
-            recipes[producer]["heavyOil"] = {
+            recipes[producer].heavyOil = recipes[producer].lightOil = {
                 time: 0,
                 produces: 1,
                 allowProductivity,

@@ -1477,6 +1477,11 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 		}
 	},
 	"oilRefinery": {
+		"lightOil": {
+			"time": 0,
+			"produces": 1,
+			"allowProductivity": true
+		},
 		"heavyOil": {
 			"time": 0,
 			"produces": 1,
@@ -1524,7 +1529,7 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 		"solidFuel": {
 			"time": 1,
 			"consumes": {
-				"heavyOil": 20
+				"lightOil": 10
 			},
 			"produces": 1,
 			"allowProductivity": true
