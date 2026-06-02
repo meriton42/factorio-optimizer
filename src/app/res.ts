@@ -199,6 +199,7 @@ export const emptyCart = {
 	"woodenChest": 0
 };
 export const sciencePackNames = knownKeys(emptyScienceCart);
+export const resNames = knownKeys(emptyCart);
 
 export type ScienceRes = keyof typeof emptyScienceCart;
 export type Res = keyof typeof emptyCart;

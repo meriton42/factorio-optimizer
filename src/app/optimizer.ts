@@ -27,7 +27,7 @@ export function calculate(): Report[] {
 	// ... and to make the list easier to navigate, we do so in topological order:
 	// first the inputs, then the product itself, and then indirect prerequisites (producer, modules, energy)
 	reportRequested = {};
-	reportRequested.research = true;
+	reportRequested[state.focusedProduct] = true;
 
 	// since energy and investment considerations create cyclic dependencies
 	// we perform a few iterations to approach the fix point 

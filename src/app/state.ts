@@ -10,6 +10,7 @@ interface State {
 	scienceTime: number;
 	scienceSpeed: number;
 	sciencePacks: {[R in ScienceRes]?: number};
+	focusedProduct: Res;
 }
 
 const defaultState: State = {
@@ -30,6 +31,7 @@ const defaultState: State = {
 	scienceTime: 60,
 	scienceSpeed: 100,
 	sciencePacks: emptyScienceCart,
+	focusedProduct: "research",
 }
 
 function merge(x: any, y: any) {

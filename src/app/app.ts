@@ -3,7 +3,7 @@ import { calculate } from './optimizer';
 import { state, saveState } from './state';
 import { producerTypes, producerNames } from './producer';
 import { moduleNames } from './modules';
-import { sciencePackNames } from './res';
+import { resNames, sciencePackNames } from './res';
 import { FormsModule } from '@angular/forms';
 import { WikiLink } from './wiki-link';
 import { DecamelizePipe } from './pipes';
@@ -22,6 +22,7 @@ export class App {
   state = state;
   producerTypes = producerTypes;
   moduleNames = moduleNames;
+  resNames = resNames;
   sciencePackNames = sciencePackNames;
   crafts!: ReturnType<typeof calculate>;
 

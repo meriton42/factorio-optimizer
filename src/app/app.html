@@ -40,6 +40,13 @@
     <div>%</div>
     Research Speed
   </div>
+
+  <h1>Display</h1>
+  <select [(ngModel)]="state.focusedProduct" (ngModelChange)="update()">
+    @for (res of resNames; track $index) {
+      <option [value]="res">{{res | decamelize}}</option>
+    }
+  </select>
 </aside>
 
 <table>
