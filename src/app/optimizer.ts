@@ -86,14 +86,19 @@ function createReport(product: Res) {
 		}
 	}
 
+	const beacons = state.beacons[product]!;
+	const producersPerBeacon = 5; // guesstimate for now
+	const beaconInvestment = beacons ? beacons / producersPerBeacon * getPreviousReport("beacon").pollution.perItem : 0; // only call getPreviousReport if relevant so we don't trigger reporting needlessly
+	const pollutionByBeaconEnergy = beacons ? time * beacons / producersPerBeacon * getPreviousReport("energy").pollution.perItem * 480: 0; // same
+
 	const items = producer.production ?? info.produces ?? 1;
 
 	const calculatePollution = (modules: ModuleSet) => {
 		const {effectOn} = modules;
 		const inputs = pollutionByInputs * effectOn.inputPollution;
-		const investment = (producerInvestment + modules.cost) * time * effectOn.producerTime / Math.max(state.amortizeOver * 3600, 600);
+		const investment = (producerInvestment + modules.cost + beaconInvestment) * time * effectOn.producerTime / Math.max(state.amortizeOver * 3600, 600);
 		const producer = pollutionByProducer * effectOn.producerPollution;
-		const energy = pollutionByEnergy * effectOn.energyPollution;
+		const energy = pollutionByBeaconEnergy * effectOn.producerTime + pollutionByEnergy * effectOn.energyPollution;
 		const perItem = (inputs + investment + producer + energy) / items;
 		return {
 			inputs,
@@ -107,7 +112,6 @@ function createReport(product: Res) {
 	const availableModules = modules.filter(module => state.available[module.name] && (module.name.startsWith("productivity") ? info.allowProductivity : true));
 	const minIndexForBeacon = availableModules.findIndex(module => !module.name.startsWith("productivity"));
 	const slots = producer.slots;
-	const beacons = state.beacons[product]!;
 	const beaconSlots = beacons * 2;
 	const beaconTransmissionStrength = 1.5 / Math.sqrt(beacons);
 	for (const module of availableModules) {
@@ -129,7 +133,7 @@ function createReport(product: Res) {
 			}
 			for (let i = index; i < availableModules.length; i++) {
 				const module = availableModules[i];
-				explore(i, size + 1, currentModules.plus(module, size < slots ? 1 : beaconTransmissionStrength));
+				explore(i, size + 1, currentModules.plus(module, size < slots ? 1 : beaconTransmissionStrength, size < slots ? 1 : 1 / producersPerBeacon));
 			}
 		}
 	}
