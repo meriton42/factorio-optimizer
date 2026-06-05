@@ -24,6 +24,7 @@ const defaultState: State = {
 		oilRefinery: "oilRefinery",
 		chemicalPlant: "chemicalPlant",
 		research: "lab",
+		rocketSilo: "rocketSilo",
 	},
 	available: {},
 	beacons: {...emptyCart},

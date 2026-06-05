@@ -1613,5 +1613,17 @@ export const recipes: {[P in ProducerType]: {[R in Res]?: RecipeInfo}} = {
 			"produces": 1,
 			"allowProductivity": true
 		}
+	},
+	"rocketSilo": {
+		"rocketPart": {
+			"time": 3,
+			"consumes": {
+				"processingUnit": 10,
+				"lowDensityStructure": 10,
+				"rocketFuel": 10
+			},
+			"produces": 1,
+			"allowProductivity": true
+		}
 	}
 };

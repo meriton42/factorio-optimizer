@@ -37,6 +37,7 @@ function generateCode(rawRecipes) {
         "advanced-crafting": "assembly",
         "crafting-with-fluid": "assembly",
         "smelting": "furnace",
+        "rocket-building": "rocketSilo",
     }
 
     const ignoredRecipe = {
@@ -59,9 +60,6 @@ function generateCode(rawRecipes) {
         "uranium-cannon-shell": true,
         "explosive-uranium-cannon-shell": true,
         "spidertron": true,
-
-        // we don't yet calculate rocket building
-        "rocket-part": true,
     }
 
     const res = {energy: 0, research: 0};

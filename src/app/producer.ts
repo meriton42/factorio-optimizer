@@ -119,6 +119,14 @@ const _producers = {
 			pollution: 0,
 			slots: 2,
 		}
+	},
+	rocketSilo: {
+		rocketSilo: {
+			speed: 1,
+			energy: 4000,
+			pollution: 0,
+			slots: 4,
+		}
 	}
 }
 export type ProducerType = keyof typeof _producers;

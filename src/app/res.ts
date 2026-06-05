@@ -159,6 +159,7 @@ export const emptyCart = {
 	"rocket": 0,
 	"rocketFuel": 0,
 	"rocketLauncher": 0,
+	"rocketPart": 0,
 	"rocketSilo": 0,
 	"satellite": 0,
 	"selectorCombinator": 0,
